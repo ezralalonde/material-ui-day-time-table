@@ -89,6 +89,7 @@ class DayTimeTable extends Component {
               </TableRow>
             }
             <TableRow>
+              <TableHeaderColumn>{timeText}</TableHeaderColumn>
               { headers }
             </TableRow>
           </TableHeader>
@@ -124,9 +125,8 @@ class DayTimeTable extends Component {
                     } else {
                       return <TableRowColumn
                         style={{
-                          "border-left": "1px solid rgb(224, 224, 224)",
+                          "border-left": "1px solid rgb(224, 224, 224)"
                         }}
-                      
                       />
                     }
                   })
