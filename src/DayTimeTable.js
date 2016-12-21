@@ -110,11 +110,12 @@ class DayTimeTable extends Component {
                   row.map((xx) => {
                     if (xx.first) {
                       return (
-                        <TableRowColumn {...xx.info.props}
+                        <TableRowColumn
                           rowSpan={xx.height}
                           style={{
                             "border-left": "1px solid rgb(224, 224, 224)",
                           }}
+                          {...xx.info.props}
                         >
                           {showCell(xx.info)}
                         </TableRowColumn>
