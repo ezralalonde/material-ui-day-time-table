@@ -52,7 +52,6 @@ storiesOf('DayTimeTable', module)
     <DayTimeTable
       caption='This is the table caption'
       cellKey={key}
-      interval={interval}
       calcCellHeight={calcHeight}
       showHeader={displayHeader}
       showCell={displayCell}
@@ -62,5 +61,6 @@ storiesOf('DayTimeTable', module)
       max={max}
       min={min}
       data={basic}
+      rowNum={(max-min)/interval}
     />
   ))

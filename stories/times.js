@@ -4,9 +4,10 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
+import moment from 'moment'
 import DayTimeTable from '../src/DayTimeTable'
 
-import { basic } from './data'
+import { times } from './data'
 
 function themed(children) {
   return (
@@ -18,16 +19,16 @@ function themed(children) {
   )
 }
 
-var interval = 15
-var min = 0
-var max = 90
+var interval = moment.duration(15, 'minutes')
+var min = moment('14:45', 'HH:mm')
+var max = moment('19:00','HH:mm')
 
 function displayCell(xx) {
   return xx.text
 }
 
 function calcHeight(xx) {
-  return (xx.end - xx.start) / interval
+  return moment(xx.end,'h:mma').diff(moment(xx.start,'h:mma')) / interval
 }
 
 function displayHeader(xx) {
@@ -35,12 +36,15 @@ function displayHeader(xx) {
 }
 
 function isActive(xx, step) {
-  var current = min + interval * step
-  return xx.start <= current && current < xx.end
+  var current = moment(min).add(step * interval)
+  return moment(xx.start, 'h:mma') <= current &&
+         current < moment(xx.end, 'h:mma')
 }
 
 function showTime(step) {
-  return `${min + interval * step} minutes`
+  var start = moment(min).add(interval * step)
+  var end = moment(start).add(interval)
+  return `${start.format('h:mma')}–${end.format('h:mma')}`
 }
 
 function key(xx) {
@@ -50,17 +54,16 @@ function key(xx) {
 storiesOf('DayTimeTable', module)
   .add('With Times', () => themed(
     <DayTimeTable
-      caption='This is the table caption'
+      caption='My plan for the week'
       cellKey={key}
-      interval={interval}
       calcCellHeight={calcHeight}
       showHeader={displayHeader}
       showCell={displayCell}
       showTime={showTime}
       isActive={isActive}
-      toolTip='Table has tooltip'
       max={max}
       min={min}
-      data={basic}
+      data={times}
+      rowNum = {(max - min) / interval}
     />
   ))

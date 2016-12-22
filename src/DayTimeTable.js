@@ -25,10 +25,9 @@ class DayTimeTable extends Component {
     const {
       caption,
       calcCellHeight,
-      className,
       data,
       hideHeaders,
-      interval,
+      rowNum,
       isActive,
       cellKey,
       max,
@@ -36,6 +35,7 @@ class DayTimeTable extends Component {
       showHeader,
       showCell,
       showTime,
+      tableProps,
       toolTip,
       timeText,
       ...other,
@@ -46,7 +46,6 @@ class DayTimeTable extends Component {
     })
 
     var colNum = headers.length
-    var rowNum = (max - min) / interval
 
     var grid = []
     var found = new Map()
@@ -73,9 +72,9 @@ class DayTimeTable extends Component {
 
     return (
       <Table
-        className={ className }
         muiTheme={this.context.muiTheme}
         selectable={false}
+        {...tableProps}
       >
         { !hideHeaders &&
           <TableHeader
@@ -84,7 +83,11 @@ class DayTimeTable extends Component {
           >
             { caption &&
               <TableRow>
-                <TableHeaderColumn colSpan={colNum} tooltip={toolTip} style={{textAlign: 'center'}}>
+                <TableHeaderColumn
+                  colSpan={colNum}
+                  tooltip={toolTip}
+                  style={{textAlign: 'center'}}
+                >
                   {caption}
                 </TableHeaderColumn>
               </TableRow>
@@ -101,22 +104,23 @@ class DayTimeTable extends Component {
         {
           grid.map((row, ii) => {
             return (
-              <TableRow>
+              <TableRow key={ii}>
                 <TableRowColumn
                   style={{
                     "borderRight": "1px solid rgb(224, 224, 224)"
                   }}
                 >{showTime(ii)}</TableRowColumn>
                 {
-                  row.map((xx) => {
+                  row.map((xx, jj) => {
                     if (xx.first) {
                       return (
                         <TableRowColumn
+                          key={cellKey(xx.info)}
                           rowSpan={xx.height}
-                          style={{
-                            "borderLeft": "1px solid rgb(224, 224, 224)",
-                          }}
                           {...xx.info.props}
+                          style={Object.assign({
+                            "borderLeft": "1px solid rgb(224, 224, 224)"
+                          }, xx.info.props.style)}
                         >
                           {showCell(xx.info)}
                         </TableRowColumn>
@@ -126,6 +130,7 @@ class DayTimeTable extends Component {
                       return
                     } else {
                       return <TableRowColumn
+                        key={`${ii}-${jj}`}
                         style={{
                           "borderLeft": "1px solid rgb(224, 224, 224)"
                         }}
@@ -146,8 +151,9 @@ class DayTimeTable extends Component {
 DayTimeTable.propTypes = {
   caption: PropTypes.string,
   calcCellHeight: PropTypes.func,
-  className: PropTypes.string,
+  rowNum: PropTypes.number.isRequired,
   showCell: PropTypes.func,
+  tableProps: PropTypes.object,
   timeText: PropTypes.string,
   toolTip: PropTypes.string,
   title: PropTypes.string
@@ -155,7 +161,7 @@ DayTimeTable.propTypes = {
 
 DayTimeTable.defaultProps = {
   timeText: "Times",
-  toolTip: null
+  toolTip: ""
 }
 
 DayTimeTable.childContextTypes = {
