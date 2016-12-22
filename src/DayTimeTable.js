@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
-import {Table} from 'material-ui/Table'
-import {TableHeader} from 'material-ui/Table'
-import {TableHeaderColumn} from 'material-ui/Table'
-import {TableRow} from 'material-ui/Table'
-import {TableRowColumn} from 'material-ui/Table'
-import {TableBody} from 'material-ui/Table'
+import { Table } from 'material-ui/Table'
+import { TableHeader } from 'material-ui/Table'
+import { TableHeaderColumn } from 'material-ui/Table'
+import { TableRow } from 'material-ui/Table'
+import { TableRowColumn } from 'material-ui/Table'
+import { TableBody } from 'material-ui/Table'
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -24,15 +24,19 @@ class DayTimeTable extends Component {
   render () {
     const {
       caption,
-      calcDuration,
+      calcCellHeight,
       className,
       data,
       hideHeaders,
       interval,
+      isActive,
+      cellKey,
       max,
       min,
       showHeader,
       showCell,
+      showTime,
+      toolTip,
       timeText,
       ...other,
     } = this.props;
@@ -45,29 +49,26 @@ class DayTimeTable extends Component {
     var rowNum = (max - min) / interval
 
     var grid = []
+    var found = new Map()
     for (let ii = 0; ii < rowNum; ii++) {
       grid[ii] = []
       for (let jj = 0; jj < colNum; jj++) {
         grid[ii][jj] = 0;
-        var current = min + interval * ii
         data[jj].info.map((cell) => {
-          if (cell.start <= current && current < cell.start + interval) {
+          if (isActive(cell, ii)) {
             grid[ii][jj] = {
-              height: calcDuration(cell) / interval,
-              info: {...cell},
-              first: true
+              height: calcCellHeight(cell),
+              info: {...cell}
             }
-          }
-          else if (cell.start <= current && current < cell.end) {
-            grid[ii][jj] = {
-              height: calcDuration(cell) / interval,
-              info: {...cell},
-              skip: true
+            if (found.get(cellKey(cell))) {
+              grid[ii][jj].skip = true
+            } else {
+              grid[ii][jj].first = true
+              found.set(cellKey(cell), true)
             }
           }
         })
       }
-      console.log(grid[ii])
     }
 
     return (
@@ -83,7 +84,7 @@ class DayTimeTable extends Component {
           >
             { caption &&
               <TableRow>
-                <TableHeaderColumn colSpan={colNum} tooltip="Table Caption" style={{textAlign: 'center'}}>
+                <TableHeaderColumn colSpan={colNum} tooltip={toolTip} style={{textAlign: 'center'}}>
                   {caption}
                 </TableHeaderColumn>
               </TableRow>
@@ -105,7 +106,7 @@ class DayTimeTable extends Component {
                   style={{
                     "border-right": "1px solid rgb(224, 224, 224)"
                   }}
-                >{interval * ii + min}</TableRowColumn>
+                >{showTime(ii)}</TableRowColumn>
                 {
                   row.map((xx) => {
                     if (xx.first) {
@@ -144,15 +145,17 @@ class DayTimeTable extends Component {
 
 DayTimeTable.propTypes = {
   caption: PropTypes.string,
-  calcDuration: PropTypes.func,
+  calcCellHeight: PropTypes.func,
   className: PropTypes.string,
   showCell: PropTypes.func,
   timeText: PropTypes.string,
+  toolTip: PropTypes.string,
   title: PropTypes.string
 }
 
 DayTimeTable.defaultProps = {
-  timeText: "Times"
+  timeText: "Times",
+  toolTip: null
 }
 
 DayTimeTable.childContextTypes = {

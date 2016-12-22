@@ -6,6 +6,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import DayTimeTable from '../src/DayTimeTable'
 
+import { basic } from './data'
+
 function themed(children) {
   return (
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
@@ -16,81 +18,49 @@ function themed(children) {
   )
 }
 
+var interval = 15
+var min = 0
+var max = 90
+
 function displayCell(xx) {
   return xx.text
 }
 
-function getDuration(xx) {
-  return xx.end - xx.start
+function calcHeight(xx) {
+  return (xx.end - xx.start) / interval
 }
 
 function displayHeader(xx) {
   return xx.name
 }
 
+function isActive(xx, step) {
+  var current = min + interval * step
+  return xx.start <= current && current < xx.end
+}
+
+function showTime(step) {
+  return `${min + interval * step} minutes`
+}
+
+function key(xx) {
+  return xx.text
+}
+
 storiesOf('DayTimeTable', module)
   .add('Basic', () => themed(
     <DayTimeTable
       caption='This is the table caption'
-      interval={15}
-      calcDuration={getDuration}
+      cellKey={key}
+      interval={interval}
+      calcCellHeight={calcHeight}
       showHeader={displayHeader}
       showCell={displayCell}
-      max={90}
-      min={0}
-      data={[
-        {
-          name: 'Sunday',
-          info: [
-            {
-              start: 15,
-              end: 30,
-              blah: "ezra",
-              text: 1,
-              props: {
-                style: {
-                  backgroundColor: "red",
-                  textAlign: "center"
-                }
-              }
-            },
-            {
-              start: 45,
-              end: 60,
-              text: 2
-            }
-          ]
-        },
-        {
-          name: 'Monday',
-          info: [
-            {
-              start: 15,
-              end: 30,
-              text: 3
-            }
-          ]
-        },
-        {
-          name: 'Tuesday',
-          info: [
-            {
-              start: 30,
-              end: 60,
-              text: 4
-            }
-          ]
-        },
-        {
-          name: 'Wednesday',
-          info: [
-            {
-              start: 15,
-              end: 75,
-              text: 5
-            }
-          ]
-        }
-      ]}
+      showTime={showTime}
+      isActive={isActive}
+      toolTip='Table has tooltip'
+      max={max}
+      min={min}
+      data={basic}
     />
   ))
