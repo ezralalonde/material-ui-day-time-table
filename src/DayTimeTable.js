@@ -104,7 +104,7 @@ class DayTimeTable extends Component {
               <TableRow>
                 <TableRowColumn
                   style={{
-                    "border-right": "1px solid rgb(224, 224, 224)"
+                    "borderRight": "1px solid rgb(224, 224, 224)"
                   }}
                 >{showTime(ii)}</TableRowColumn>
                 {
@@ -114,7 +114,7 @@ class DayTimeTable extends Component {
                         <TableRowColumn
                           rowSpan={xx.height}
                           style={{
-                            "border-left": "1px solid rgb(224, 224, 224)",
+                            "borderLeft": "1px solid rgb(224, 224, 224)",
                           }}
                           {...xx.info.props}
                         >
@@ -127,7 +127,7 @@ class DayTimeTable extends Component {
                     } else {
                       return <TableRowColumn
                         style={{
-                          "border-left": "1px solid rgb(224, 224, 224)"
+                          "borderLeft": "1px solid rgb(224, 224, 224)"
                         }}
                       />
                     }
