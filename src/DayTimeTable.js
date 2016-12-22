@@ -42,7 +42,7 @@ class DayTimeTable extends Component {
     } = this.props;
 
     var headers = data.map((day, ii) => {
-      return <TableHeaderColumn>{showHeader(day)}</TableHeaderColumn>
+      return <TableHeaderColumn key={ii}>{showHeader(day)}</TableHeaderColumn>
     })
 
     var colNum = headers.length
