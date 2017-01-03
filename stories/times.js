@@ -52,7 +52,7 @@ function key(xx) {
 }
 
 storiesOf('DayTimeTable', module)
-  .add('times', () => themed(
+  .add('Using Moment.js', () => themed(
     <DayTimeTable
       caption='My plan for the week'
       cellKey={key}
@@ -67,7 +67,7 @@ storiesOf('DayTimeTable', module)
       rowNum = {(max - min) / interval}
     />
   ))
-  .add('times, no Header', () => themed(
+  .add('Moment.js, no header', () => themed(
     <DayTimeTable
       caption='My plan for the week'
       cellKey={key}
@@ -83,7 +83,7 @@ storiesOf('DayTimeTable', module)
       rowNum = {(max - min) / interval}
     />
   ))
-  .add('no header, no times', () => themed(
+  .add('Moment.js; no header, no times', () => themed(
     <DayTimeTable
       caption='My plan for the week'
       cellKey={key}
