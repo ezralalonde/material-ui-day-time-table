@@ -52,7 +52,7 @@ function key(xx) {
 }
 
 storiesOf('DayTimeTable', module)
-  .add('With Times', () => themed(
+  .add('times', () => themed(
     <DayTimeTable
       caption='My plan for the week'
       cellKey={key}
@@ -64,6 +64,39 @@ storiesOf('DayTimeTable', module)
       max={max}
       min={min}
       data={times}
+      rowNum = {(max - min) / interval}
+    />
+  ))
+  .add('times, no Header', () => themed(
+    <DayTimeTable
+      caption='My plan for the week'
+      cellKey={key}
+      calcCellHeight={calcHeight}
+      showHeader={displayHeader}
+      showCell={displayCell}
+      showTime={showTime}
+      isActive={isActive}
+      max={max}
+      min={min}
+      data={times}
+      hideHeaders
+      rowNum = {(max - min) / interval}
+    />
+  ))
+  .add('no header, no times', () => themed(
+    <DayTimeTable
+      caption='My plan for the week'
+      cellKey={key}
+      calcCellHeight={calcHeight}
+      showHeader={displayHeader}
+      showCell={displayCell}
+      showTime={showTime}
+      isActive={isActive}
+      max={max}
+      min={min}
+      data={times}
+      hideHeaders
+      hideTimes
       rowNum = {(max - min) / interval}
     />
   ))

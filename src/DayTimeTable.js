@@ -27,6 +27,7 @@ class DayTimeTable extends Component {
       calcCellHeight,
       data,
       hideHeaders,
+      hideTimes,
       rowNum,
       isActive,
       cellKey,
@@ -39,7 +40,7 @@ class DayTimeTable extends Component {
       toolTip,
       timeText,
       ...other,
-    } = this.props;
+    } = this.props
 
     var headers = data.map((day, ii) => {
       return <TableHeaderColumn key={ii}>{showHeader(day)}</TableHeaderColumn>
@@ -93,7 +94,9 @@ class DayTimeTable extends Component {
               </TableRow>
             }
             <TableRow>
-              <TableHeaderColumn>{timeText}</TableHeaderColumn>
+              { !hideTimes &&
+                <TableHeaderColumn>{timeText}</TableHeaderColumn>
+              }
               { headers }
             </TableRow>
           </TableHeader>
@@ -103,24 +106,35 @@ class DayTimeTable extends Component {
         >
         {
           grid.map((row, ii) => {
+            var cellStyle={
+              "borderRight": "1px solid rgb(224, 224, 224)",
+              "borderLeft": "1px solid rgb(224, 224, 224)"
+            }
             return (
               <TableRow key={ii}>
-                <TableRowColumn
-                  style={{
-                    "borderRight": "1px solid rgb(224, 224, 224)"
-                  }}
-                >{showTime(ii)}</TableRowColumn>
+                { !hideTimes &&
+                  <TableRowColumn
+                    style={cellStyle}
+                  >{showTime(ii)}</TableRowColumn>
+                }
                 {
                   row.map((xx, jj) => {
-                    if (xx.first) {
+                    if (!xx.info) {
+                      return <TableRowColumn
+                        key={`${ii}-${jj}`}
+                        style={cellStyle}
+                      />
+                    }
+                    else if (xx.first) {
+                      if (!xx.info.props) {
+                        xx.info.props = {style: ""}
+                      }
                       return (
                         <TableRowColumn
                           key={cellKey(xx.info)}
                           rowSpan={xx.height}
                           {...xx.info.props}
-                          style={Object.assign({
-                            "borderLeft": "1px solid rgb(224, 224, 224)"
-                          }, xx.info.props.style)}
+                          style={Object.assign(xx.info.props.style, cellStyle)}
                         >
                           {showCell(xx.info)}
                         </TableRowColumn>
@@ -128,13 +142,6 @@ class DayTimeTable extends Component {
                     }
                     else if (xx.skip) {
                       return
-                    } else {
-                      return <TableRowColumn
-                        key={`${ii}-${jj}`}
-                        style={{
-                          "borderLeft": "1px solid rgb(224, 224, 224)"
-                        }}
-                      />
                     }
                   })
                 }

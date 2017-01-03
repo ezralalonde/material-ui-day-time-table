@@ -48,7 +48,7 @@ function key(xx) {
 }
 
 storiesOf('DayTimeTable', module)
-  .add('Basic', () => themed(
+  .add('basic', () => themed(
     <DayTimeTable
       caption='This is the table caption'
       cellKey={key}
