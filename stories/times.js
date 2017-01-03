@@ -64,7 +64,8 @@ storiesOf('DayTimeTable', module)
       max={max}
       min={min}
       data={times}
-      rowNum = {(max - min) / interval}
+      rowNum={(max - min) / interval}
+      valueKey='info'
     />
   ))
   .add('Moment.js, no header', () => themed(
@@ -80,7 +81,8 @@ storiesOf('DayTimeTable', module)
       min={min}
       data={times}
       hideHeaders
-      rowNum = {(max - min) / interval}
+      rowNum={(max - min) / interval}
+      valueKey='info'
     />
   ))
   .add('Moment.js; no header, no times', () => themed(
@@ -97,7 +99,8 @@ storiesOf('DayTimeTable', module)
       data={times}
       hideHeaders
       hideTimes
-      rowNum = {(max - min) / interval}
+      rowNum={(max - min) / interval}
+      valueKey='info'
     />
   ))
   .add('Moment.js, no times', () => themed(
@@ -114,5 +117,6 @@ storiesOf('DayTimeTable', module)
       data={times}
       hideTimes
       rowNum = {(max - min) / interval}
+      valueKey='info'
     />
   ))

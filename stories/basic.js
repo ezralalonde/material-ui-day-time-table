@@ -62,5 +62,6 @@ storiesOf('DayTimeTable', module)
       min={min}
       data={basic}
       rowNum={(max-min)/interval}
+      valueKey='values'
     />
   ))

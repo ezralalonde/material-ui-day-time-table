@@ -39,6 +39,7 @@ class DayTimeTable extends Component {
       tableProps,
       toolTip,
       timeText,
+      valueKey,
       ...other,
     } = this.props
 
@@ -54,7 +55,7 @@ class DayTimeTable extends Component {
       grid[ii] = []
       for (let jj = 0; jj < colNum; jj++) {
         grid[ii][jj] = 0
-        data[jj].info.map((cell) => {
+        data[jj][valueKey].map((cell) => {
           if (isActive(cell, ii)) {
             grid[ii][jj] = {
               height: calcCellHeight(cell),
@@ -163,7 +164,8 @@ DayTimeTable.propTypes = {
   tableProps: PropTypes.object,
   timeText: PropTypes.string,
   toolTip: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  valueKey: PropTypes.string.isRequired
 }
 
 DayTimeTable.defaultProps = {

@@ -3,7 +3,7 @@ import React from 'react'
 var basic = [
 {
   name: 'Sunday',
-  info: [
+  values: [
     {
       start: 15,
       end: 30,
@@ -25,7 +25,7 @@ var basic = [
 },
 {
   name: 'Monday',
-  info: [
+  values: [
     {
       start: 15,
       end: 30,
@@ -35,7 +35,7 @@ var basic = [
 },
 {
   name: 'Tuesday',
-  info: [
+  values: [
     {
       start: 30,
       end: 60,
@@ -45,7 +45,7 @@ var basic = [
 },
 {
   name: 'Wednesday',
-  info: [
+  values: [
     {
       start: 15,
       end: 75,
