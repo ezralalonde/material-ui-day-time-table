@@ -53,7 +53,7 @@ class DayTimeTable extends Component {
     for (let ii = 0; ii < rowNum; ii++) {
       grid[ii] = []
       for (let jj = 0; jj < colNum; jj++) {
-        grid[ii][jj] = 0;
+        grid[ii][jj] = 0
         data[jj].info.map((cell) => {
           if (isActive(cell, ii)) {
             grid[ii][jj] = {
@@ -85,7 +85,7 @@ class DayTimeTable extends Component {
             { caption &&
               <TableRow>
                 <TableHeaderColumn
-                  colSpan={colNum}
+                  colSpan={colNum + !hideTimes}
                   tooltip={toolTip}
                   style={{textAlign: 'center'}}
                 >

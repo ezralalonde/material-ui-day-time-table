@@ -100,3 +100,19 @@ storiesOf('DayTimeTable', module)
       rowNum = {(max - min) / interval}
     />
   ))
+  .add('Moment.js, no times', () => themed(
+    <DayTimeTable
+      caption='My plan for the week'
+      cellKey={key}
+      calcCellHeight={calcHeight}
+      showHeader={displayHeader}
+      showCell={displayCell}
+      showTime={showTime}
+      isActive={isActive}
+      max={max}
+      min={min}
+      data={times}
+      hideTimes
+      rowNum = {(max - min) / interval}
+    />
+  ))
