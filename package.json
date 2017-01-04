@@ -1,6 +1,6 @@
 {
   "name": "material-ui-day-time-table",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Display a day/time table using Material-UI.",
   "main": "lib/DayTimeTable.js",
   "scripts": {

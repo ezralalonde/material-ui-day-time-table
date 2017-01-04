@@ -39,5 +39,5 @@ PRs accepted. :beer:
 
 ## License
 
-[BSD-3-Clause © Ezra Lalonde](../LICENSE)
+[BSD-3-Clause © Ezra Lalonde](LICENSE)
 
