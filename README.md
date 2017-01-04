@@ -1,7 +1,7 @@
 # Material-UI Day Time Table
 
 A flexible Material-UI component that displays information in the style of a day-planner.
-It hopefully takes the pain out of manually specifying colspan values manually.
+It hopefully prevents the pain out of manually specifying colspan values.
 
 ![Day Time Table](/screenshot.png?raw=true "Sample Output")
 
