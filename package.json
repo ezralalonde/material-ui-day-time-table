@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-day-time-time",
+  "name": "material-ui-day-time-table",
   "version": "0.8.5",
   "description": "Display a day/time table using Material-UI.",
   "main": "lib/DayTimeTable.js",
