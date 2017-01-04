@@ -150,4 +150,32 @@ var times = [
 }
 ]
 
-module.exports = { basic, times }
+var screenshot = [
+{
+  header: 'Header One',
+  data: [
+    {
+      start: '4:00pm',
+      len: 1,
+      content: 'Hello'
+    }
+  ]
+},
+{
+  header: 'Title Two',
+  data: [
+    {
+      start: '3:30pm',
+      len: 0.5,
+      content: 'World'
+    },
+    {
+      start: '4:30pm',
+      len: 1,
+      content: 'Again'
+    }
+  ]
+}
+]
+
+module.exports = { basic, times, screenshot }

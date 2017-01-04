@@ -2,6 +2,7 @@ import { configure } from '@kadira/storybook'
 
 function loadStories() {
   require('../stories/basic')
+  require('../stories/screenshot')
   require('../stories/times')
 }
 

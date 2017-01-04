@@ -23,22 +23,20 @@ class DayTimeTable extends Component {
 
   render () {
     const {
-      caption,
       calcCellHeight,
+      caption,
+      cellKey,
       data,
       hideHeaders,
       hideTimes,
-      rowNum,
       isActive,
-      cellKey,
-      max,
-      min,
-      showHeader,
+      rowNum,
       showCell,
+      showHeader,
       showTime,
       tableProps,
-      toolTip,
       timeText,
+      toolTip,
       valueKey,
       ...other,
     } = this.props
@@ -83,7 +81,7 @@ class DayTimeTable extends Component {
             displaySelectAll={false}
             adjustForCheckbox={false}
           >
-            { caption &&
+            { !!caption &&
               <TableRow>
                 <TableHeaderColumn
                   colSpan={colNum + !hideTimes}
@@ -108,8 +106,8 @@ class DayTimeTable extends Component {
         {
           grid.map((row, ii) => {
             var cellStyle={
-              "borderRight": "1px solid rgb(224, 224, 224)",
-              "borderLeft": "1px solid rgb(224, 224, 224)"
+              borderRight: '1px solid rgb(224, 224, 224)',
+              borderLeft: '1px solid rgb(224, 224, 224)'
             }
             return (
               <TableRow key={ii}>
@@ -128,7 +126,7 @@ class DayTimeTable extends Component {
                     }
                     else if (xx.first) {
                       if (!xx.info.props) {
-                        xx.info.props = {style: ""}
+                        xx.info.props = {style: ''}
                       }
                       return (
                         <TableRowColumn
@@ -157,20 +155,26 @@ class DayTimeTable extends Component {
 }
 
 DayTimeTable.propTypes = {
+  calcCellHeight: PropTypes.func.isRequired,
   caption: PropTypes.string,
-  calcCellHeight: PropTypes.func,
+  cellKey: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
+  hideHeaders: PropTypes.bool,
+  hideTimes: PropTypes.bool,
+  isActive: PropTypes.func.isRequired,
   rowNum: PropTypes.number.isRequired,
-  showCell: PropTypes.func,
+  showCell: PropTypes.func.isRequired,
+  showHeader: PropTypes.func.isRequired,
+  showTime: PropTypes.func.isRequired,
   tableProps: PropTypes.object,
   timeText: PropTypes.string,
   toolTip: PropTypes.string,
-  title: PropTypes.string,
   valueKey: PropTypes.string.isRequired
 }
 
 DayTimeTable.defaultProps = {
-  timeText: "Times",
-  toolTip: ""
+  timeText: 'Times',
+  toolTip: ''
 }
 
 DayTimeTable.childContextTypes = {
