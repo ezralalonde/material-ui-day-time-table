@@ -1,6 +1,6 @@
 {
-  "name": "material-ui-day-time",
-  "version": "0.1.0",
+  "name": "material-ui-day-time-time",
+  "version": "0.8.5",
   "description": "Display a day/time table using Material-UI.",
   "main": "lib/DayTimeTable.js",
   "scripts": {
@@ -17,19 +17,21 @@
     "material",
     "day",
     "time",
+    "table",
     "schedule",
-    "week"
+    "week",
+    "daily"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ezralalonde/material-ui-day-time.git"
+    "url": "git+https://github.com/ezralalonde/material-ui-day-time-table.git"
   },
   "author": "Ezra Lalonde",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/ezralalonde/material-ui-day-time/issues"
+    "url": "https://github.com/ezralalonde/material-ui-day-time-table/issues"
   },
-  "homepage": "https://github.com/ezralalonde/material-ui-day-time#readme",
+  "homepage": "https://github.com/ezralalonde/material-ui-day-time-table#readme",
   "devDependencies": {
     "@kadira/storybook": "^2.15.1",
     "@kadira/storybook-deployer": "^1.2.0",

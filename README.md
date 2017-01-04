@@ -20,12 +20,11 @@ It hopefully takes the pain out of manually specifying colspan values manually.
 
 ## Usage
 
-```
-```
-
 See
 [storybook](https://ezralalonde.github.io/material-ui-day-time-table)
-for further examples.
+for demos, and [storybook source](../stories/) for reference. It's quite simple. There are examples using [Moment.js](http://momentjs.com/) for nice times.
+
+The source is the definitive reference.
 
 ## Contribute
 
