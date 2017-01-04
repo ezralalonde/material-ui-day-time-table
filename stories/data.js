@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 
 var basic = [
 {
@@ -178,4 +178,8 @@ var screenshot = [
 }
 ]
 
-module.exports = { basic, times, screenshot }
+module.exports = {
+  basic,
+  times,
+  screenshot
+}
