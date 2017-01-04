@@ -20,15 +20,22 @@ It hopefully takes the pain out of manually specifying colspan values manually.
 
 ## Usage
 
+This component is pretty flexible.
+It allows you to style your tables how you wish, while also trying to remain flexible with the format of your data.
+To accomplish this, there are a number of functions which you must supply for how to access the data.
+Most of them are fairly trivial.
+
 See
 [storybook](https://ezralalonde.github.io/material-ui-day-time-table)
-for demos, and [storybook source](../stories/) for reference. It's quite simple. There are examples using [Moment.js](http://momentjs.com/) for nice times.
+for demos, and [storybook source](stories/) for reference.
+It's quite simple.
+There are examples using [Moment.js](http://momentjs.com/) for nice times.
 
 The source is the definitive reference.
 
 ## Contribute
 
-PRs accepted.
+PRs accepted. :beer:
 
 ## License
 
