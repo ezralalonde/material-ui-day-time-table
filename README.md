@@ -22,8 +22,23 @@ It prevents the pain of manually specifying colspan values.
 
 This component is pretty flexible.
 It allows you to style your tables how you wish, while also trying to remain flexible with the format of your data.
-To accomplish this, there are a number of functions which you must supply for how to access the data.
-Most of them are fairly trivial.
+To accomplish this, there are a number of trivial functions which you must supply for how to access the data.
+
+    <DayTimeTable
+      caption="This is the table caption"
+      cellKey={key}
+      calcCellHeight={calcHeight}
+      showHeader={displayHeader}
+      showCell={displayCell}
+      showTime={showTime}
+      isActive={isActive}
+      toolTip="Table has tooltip"
+      max={max}
+      min={min}
+      data={basic}
+      rowNum={(max-min)/interval}
+      valueKey="values"
+    />
 
 See
 [storybook](https://ezralalonde.github.io/material-ui-day-time-table)
