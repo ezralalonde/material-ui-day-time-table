@@ -1,6 +1,6 @@
 {
   "name": "material-ui-day-time-table",
-  "version": "0.8.7",
+  "version": "1.0.0",
   "description": "Display a day/time table using Material-UI.",
   "main": "lib/DayTimeTable.js",
   "scripts": {
@@ -12,9 +12,16 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "files": [
+    "lib/**/*.js",
+    "README.md",
+    "LICENSE",
+    "screenshot.png"
+  ],
   "keywords": [
     "react",
     "material",
+    "calendar",
     "day",
     "time",
     "table",

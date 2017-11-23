@@ -7,6 +7,12 @@ It prevents the pain of manually specifying colspan values.
 
 [View storybook demo.](https://ezralalonde.github.io/material-ui-day-time-table)
 
+## 1.0
+
+This component is considered feature-complete, and stable.
+It is being used in production, and is actively supported, but no new
+features are under development.
+
 ## Table of Contents
 
 - [Install](#install)
@@ -21,8 +27,10 @@ It prevents the pain of manually specifying colspan values.
 ## Usage
 
 This component is pretty flexible.
-It allows you to style your tables how you wish, while also trying to remain flexible with the format of your data.
-To accomplish this, there are a number of trivial functions which you must supply for how to access the data.
+It allows you to style your tables how you wish, while also trying to
+remain flexible with the format of your data.
+To accomplish this, there are a number of trivial functions
+which you must supply for how to access the data.
 
     <DayTimeTable
       caption="This is the table caption"
