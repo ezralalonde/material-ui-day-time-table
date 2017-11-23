@@ -1,15 +1,15 @@
-import React from 'react'  // eslint-disable-line no-unused-vars
-import { Component, PropTypes } from 'react'
+import React from "react" // eslint-disable-line no-unused-vars
+import { Component, PropTypes } from "react"
 
-import { Table } from 'material-ui/Table'
-import { TableHeader } from 'material-ui/Table'
-import { TableHeaderColumn } from 'material-ui/Table'
-import { TableRow } from 'material-ui/Table'
-import { TableRowColumn } from 'material-ui/Table'
-import { TableBody } from 'material-ui/Table'
+import { Table } from "material-ui/Table"
+import { TableHeader } from "material-ui/Table"
+import { TableHeaderColumn } from "material-ui/Table"
+import { TableRow } from "material-ui/Table"
+import { TableRowColumn } from "material-ui/Table"
+import { TableBody } from "material-ui/Table"
 
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import baseTheme from "material-ui/styles/baseThemes/lightBaseTheme"
+import getMuiTheme from "material-ui/styles/getMuiTheme"
 
 class DayTimeTable extends Component {
   getChildContext() {
@@ -18,11 +18,11 @@ class DayTimeTable extends Component {
     }
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  render () {
+  render() {
     const {
       calcCellHeight,
       caption,
@@ -52,11 +52,11 @@ class DayTimeTable extends Component {
       grid[ii] = []
       for (let jj = 0; jj < colNum; jj++) {
         grid[ii][jj] = 0
-        data[jj][valueKey].map((cell) => {
+        data[jj][valueKey].map(cell => {
           if (isActive(cell, ii)) {
             grid[ii][jj] = {
               height: calcCellHeight(cell),
-              info: {...cell}
+              info: { ...cell }
             }
             if (found.get(cellKey(cell))) {
               grid[ii][jj].skip = true
@@ -75,79 +75,65 @@ class DayTimeTable extends Component {
         selectable={false}
         {...tableProps}
       >
-        { !hideHeaders &&
-          <TableHeader
-            displaySelectAll={false}
-            adjustForCheckbox={false}
-          >
-            { !!caption &&
+        {!hideHeaders && (
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            {!!caption && (
               <TableRow>
                 <TableHeaderColumn
                   colSpan={colNum + !hideTimes}
                   tooltip={toolTip}
-                  style={{textAlign: 'center'}}
+                  style={{ textAlign: "center" }}
                 >
                   {caption}
                 </TableHeaderColumn>
               </TableRow>
-            }
+            )}
             <TableRow>
-              { !hideTimes &&
-                <TableHeaderColumn>{timeText}</TableHeaderColumn>
-              }
-              { headers }
+              {!hideTimes && <TableHeaderColumn>{timeText}</TableHeaderColumn>}
+              {headers}
             </TableRow>
           </TableHeader>
-        }
-        <TableBody
-          displayRowCheckbox={false}
-        >
-        {
-          grid.map((row, ii) => {
-            var cellStyle={
-              borderRight: '1px solid rgb(224, 224, 224)',
-              borderLeft: '1px solid rgb(224, 224, 224)'
+        )}
+        <TableBody displayRowCheckbox={false}>
+          {grid.map((row, ii) => {
+            var cellStyle = {
+              borderRight: "1px solid rgb(224, 224, 224)",
+              borderLeft: "1px solid rgb(224, 224, 224)"
             }
 
             return (
               <TableRow key={ii}>
-                { !hideTimes &&
-                  <TableRowColumn
-                    style={cellStyle}
-                  >{showTime(ii)}</TableRowColumn>
-                }
-                {
-                  row.map((xx, jj) => {
-                    if (!xx.info) {
-                      return <TableRowColumn
-                        key={`${ii}-${jj}`}
-                        style={cellStyle}
-                      />
+                {!hideTimes && (
+                  <TableRowColumn style={cellStyle}>
+                    {showTime(ii)}
+                  </TableRowColumn>
+                )}
+                {row.map((xx, jj) => {
+                  if (!xx.info) {
+                    return (
+                      <TableRowColumn key={`${ii}-${jj}`} style={cellStyle} />
+                    )
+                  } else if (xx.first) {
+                    if (!xx.info.props) {
+                      xx.info.props = { style: "" }
                     }
-                    else if (xx.first) {
-                      if (!xx.info.props) {
-                        xx.info.props = {style: ''}
-                      }
-                      return (
-                        <TableRowColumn
-                          key={cellKey(xx.info)}
-                          rowSpan={xx.height}
-                          {...xx.info.props}
-                          style={Object.assign(xx.info.props.style, cellStyle)}
-                        >
-                          {showCell(xx.info)}
-                        </TableRowColumn>
-                      )
-                    }
-                    else if (xx.skip) {
-                      return
-                    }
-                  })
-                }
+                    return (
+                      <TableRowColumn
+                        key={cellKey(xx.info)}
+                        rowSpan={xx.height}
+                        {...xx.info.props}
+                        style={Object.assign(xx.info.props.style, cellStyle)}
+                      >
+                        {showCell(xx.info)}
+                      </TableRowColumn>
+                    )
+                  } else if (xx.skip) {
+                    return
+                  }
+                })}
               </TableRow>
             )
-          })
-        }
+          })}
         </TableBody>
       </Table>
     )
@@ -173,12 +159,12 @@ DayTimeTable.propTypes = {
 }
 
 DayTimeTable.defaultProps = {
-  timeText: 'Times',
-  toolTip: ''
+  timeText: "Times",
+  toolTip: ""
 }
 
 DayTimeTable.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired
 }
 
 export default DayTimeTable

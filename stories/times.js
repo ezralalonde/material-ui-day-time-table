@@ -1,15 +1,15 @@
-import React from 'react' // eslint-disable-line no-unused-vars
-import { storiesOf } from '@storybook/react'
+import React from "react" // eslint-disable-line no-unused-vars
+import { storiesOf } from "@storybook/react"
 
-import moment from 'moment'
-import DayTimeTable from '../src/DayTimeTable'
+import moment from "moment"
+import DayTimeTable from "../src/DayTimeTable"
 
-import { times } from './data'
+import { times } from "./data"
 
 var intervalMinutes = 15
-var interval = moment.duration(intervalMinutes, 'minutes')
-var min = moment('14:45', 'HH:mm')
-var max = moment('19:00', 'HH:mm')
+var interval = moment.duration(intervalMinutes, "minutes")
+var min = moment("14:45", "HH:mm")
+var max = moment("19:00", "HH:mm")
 
 /**
  * Return text to be printed in cell.
@@ -26,7 +26,7 @@ function displayCell(xx) {
  * @returns {number} The height of the element
  */
 function calcHeight(xx) {
-  return moment(xx.end, 'h:mma').diff(moment(xx.start, 'h:mma')) / interval
+  return moment(xx.end, "h:mma").diff(moment(xx.start, "h:mma")) / interval
 }
 
 /**
@@ -47,8 +47,9 @@ function displayHeader(xx) {
 function isActive(xx, step) {
   var current = moment(min).add(step * interval)
 
-  return moment(xx.start, 'h:mma') <= current &&
-         current < moment(xx.end, 'h:mma')
+  return (
+    moment(xx.start, "h:mma") <= current && current < moment(xx.end, "h:mma")
+  )
 }
 
 /**
@@ -60,7 +61,7 @@ function showTime(step) {
   var start = moment(min).add(interval * step)
   var end = moment(start).add(interval)
 
-  return `${start.format('h:mma')}–${end.format('h:mma')}`
+  return `${start.format("h:mma")}–${end.format("h:mma")}`
 }
 
 /**
@@ -72,8 +73,8 @@ function key(xx) {
   return xx.text
 }
 
-storiesOf('Times', module)
-  .add('Using Moment.js', () =>
+storiesOf("Times", module)
+  .add("Using Moment.js", () => (
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -88,8 +89,8 @@ storiesOf('Times', module)
       rowNum={(max - min) / interval}
       valueKey="info"
     />
-  )
-  .add('Moment.js, no header', () =>
+  ))
+  .add("Moment.js, no header", () => (
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -105,8 +106,8 @@ storiesOf('Times', module)
       rowNum={(max - min) / interval}
       valueKey="info"
     />
-  )
-  .add('Moment.js; no header, no times', () =>
+  ))
+  .add("Moment.js; no header, no times", () => (
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -123,8 +124,8 @@ storiesOf('Times', module)
       rowNum={(max - min) / interval}
       valueKey="info"
     />
-  )
-  .add('Moment.js, no times', () =>
+  ))
+  .add("Moment.js, no times", () => (
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -137,7 +138,7 @@ storiesOf('Times', module)
       min={min}
       data={times}
       hideTimes
-      rowNum = {(max - min) / interval}
+      rowNum={(max - min) / interval}
       valueKey="info"
     />
-  )
+  ))

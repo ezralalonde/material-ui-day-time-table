@@ -1,7 +1,7 @@
-import React from 'react' // eslint-disable-line no-unused-vars
-import { storiesOf } from '@storybook/react'
-import DayTimeTable from '../src/DayTimeTable'
-import { basic } from './data'
+import React from "react" // eslint-disable-line no-unused-vars
+import { storiesOf } from "@storybook/react"
+import DayTimeTable from "../src/DayTimeTable"
+import { basic } from "./data"
 
 var interval = 15
 var min = 0
@@ -41,7 +41,7 @@ function displayHeader(xx) {
  * @returns {bool} True if cell should be coloured
  */
 function isActive(xx, step) {
-  var current = min + (interval * step)
+  var current = min + interval * step
 
   return xx.start <= current && current < xx.end
 }
@@ -52,7 +52,7 @@ function isActive(xx, step) {
  * @returns {object} The text that will appear in the cell
  */
 function showTime(step) {
-  return `${min + (interval * step)} minutes`
+  return `${min + interval * step} minutes`
 }
 
 /**
@@ -64,21 +64,20 @@ function key(xx) {
   return xx.text
 }
 
-storiesOf('Basic', module)
-  .add('Most Basic', () =>
-    <DayTimeTable
-      caption="This is the table caption"
-      cellKey={key}
-      calcCellHeight={calcHeight}
-      showHeader={displayHeader}
-      showCell={displayCell}
-      showTime={showTime}
-      isActive={isActive}
-      toolTip="Table has tooltip"
-      max={max}
-      min={min}
-      data={basic}
-      rowNum={(max-min)/interval}
-      valueKey="values"
-    />
-  )
+storiesOf("Basic", module).add("Most Basic", () => (
+  <DayTimeTable
+    caption="This is the table caption"
+    cellKey={key}
+    calcCellHeight={calcHeight}
+    showHeader={displayHeader}
+    showCell={displayCell}
+    showTime={showTime}
+    isActive={isActive}
+    toolTip="Table has tooltip"
+    max={max}
+    min={min}
+    data={basic}
+    rowNum={(max - min) / interval}
+    valueKey="values"
+  />
+))
