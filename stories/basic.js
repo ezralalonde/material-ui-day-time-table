@@ -1,4 +1,4 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react"
 import { storiesOf } from "@storybook/react"
 import DayTimeTable from "../src/DayTimeTable"
 import { basic } from "./data"

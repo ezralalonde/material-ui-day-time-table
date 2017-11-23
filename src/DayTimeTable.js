@@ -1,4 +1,4 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react"
 import { Component, PropTypes } from "react"
 
 import { Table } from "material-ui/Table"
@@ -41,9 +41,9 @@ class DayTimeTable extends Component {
       valueKey
     } = this.props
 
-    var headers = data.map((day, ii) => {
-      return <TableHeaderColumn key={ii}>{showHeader(day)}</TableHeaderColumn>
-    })
+    var headers = data.map((day, ii) => (
+      <TableHeaderColumn key={ii}>{showHeader(day)}</TableHeaderColumn>
+    ))
     var colNum = headers.length
     var grid = []
     var found = new Map()
