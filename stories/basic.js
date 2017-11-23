@@ -1,31 +1,11 @@
 import React from 'react' // eslint-disable-line no-unused-vars
-import { storiesOf } from '@kadira/storybook'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-
+import { storiesOf } from '@storybook/react'
 import DayTimeTable from '../src/DayTimeTable'
-
 import { basic } from './data'
 
 var interval = 15
 var min = 0
 var max = 90
-
-/**
- * Theme the child
- * @param {object} children The child to style
- * @returns {object} The child with style applied
- */
-function themed(children) {
-  return (
-    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-      <div>
-        {children}
-      </div>
-    </MuiThemeProvider>
-  )
-}
 
 /**
  * Return text to be printed in cell.
@@ -84,8 +64,8 @@ function key(xx) {
   return xx.text
 }
 
-storiesOf('DayTimeTable', module)
-  .add('Most Basic', () => themed(
+storiesOf('Basic', module)
+  .add('Most Basic', () =>
     <DayTimeTable
       caption="This is the table caption"
       cellKey={key}
@@ -101,4 +81,4 @@ storiesOf('DayTimeTable', module)
       rowNum={(max-min)/interval}
       valueKey="values"
     />
-  ))
+  )

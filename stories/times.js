@@ -1,8 +1,5 @@
 import React from 'react' // eslint-disable-line no-unused-vars
-import { storiesOf } from '@kadira/storybook'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { storiesOf } from '@storybook/react'
 
 import moment from 'moment'
 import DayTimeTable from '../src/DayTimeTable'
@@ -13,21 +10,6 @@ var intervalMinutes = 15
 var interval = moment.duration(intervalMinutes, 'minutes')
 var min = moment('14:45', 'HH:mm')
 var max = moment('19:00', 'HH:mm')
-
-/**
- * Theme the child
- * @param {object} children The child to style
- * @returns {object} the child with style applied
- */
-function themed(children) {
-  return (
-    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-      <div>
-        {children}
-      </div>
-    </MuiThemeProvider>
-  )
-}
 
 /**
  * Return text to be printed in cell.
@@ -90,7 +72,8 @@ function key(xx) {
   return xx.text
 }
 
-storiesOf('DayTimeTable', module).add('Using Moment.js', () => themed(
+storiesOf('Times', module)
+  .add('Using Moment.js', () =>
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -105,8 +88,8 @@ storiesOf('DayTimeTable', module).add('Using Moment.js', () => themed(
       rowNum={(max - min) / interval}
       valueKey="info"
     />
-  ))
-  .add('Moment.js, no header', () => themed(
+  )
+  .add('Moment.js, no header', () =>
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -122,8 +105,8 @@ storiesOf('DayTimeTable', module).add('Using Moment.js', () => themed(
       rowNum={(max - min) / interval}
       valueKey="info"
     />
-  ))
-  .add('Moment.js; no header, no times', () => themed(
+  )
+  .add('Moment.js; no header, no times', () =>
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -140,8 +123,8 @@ storiesOf('DayTimeTable', module).add('Using Moment.js', () => themed(
       rowNum={(max - min) / interval}
       valueKey="info"
     />
-  ))
-  .add('Moment.js, no times', () => themed(
+  )
+  .add('Moment.js, no times', () =>
     <DayTimeTable
       caption="My plan for the week"
       cellKey={key}
@@ -157,4 +140,4 @@ storiesOf('DayTimeTable', module).add('Using Moment.js', () => themed(
       rowNum = {(max - min) / interval}
       valueKey="info"
     />
-  ))
+  )
