@@ -1,6 +1,6 @@
 {
   "name": "material-ui-day-time-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Display a day/time table using Material-UI.",
   "main": "lib/DayTimeTable.js",
   "scripts": {
@@ -12,12 +12,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "files": [
-    "lib/**/*.js",
-    "README.md",
-    "LICENSE",
-    "screenshot.png"
-  ],
+  "files": ["lib/**/*.js", "README.md", "LICENSE", "screenshot.png"],
   "keywords": [
     "react",
     "material",
@@ -38,7 +33,12 @@
   "bugs": {
     "url": "https://github.com/ezralalonde/material-ui-day-time-table/issues"
   },
-  "homepage": "https://github.com/ezralalonde/material-ui-day-time-table#readme",
+  "homepage":
+    "https://github.com/ezralalonde/material-ui-day-time-table#readme",
+  "babel": {
+    "presets": ["@babel/preset-env", "react"],
+    "plugins": "transform-object-assign"
+  },
   "devDependencies": {
     "@storybook/cli": "^3.2.16",
     "@storybook/storybook-deployer": "^2.0.0",
